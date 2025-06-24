@@ -11,8 +11,8 @@ pipeline {
             }
             steps {
                 sh '''
-                    ping -c 4 registry.npmjs.org || true
-                    curl -I https://registry.npmjs.org || true
+                    npm config rm proxy 
+                    npm config rm https-proxy --tried removing npm proxy 
                     ls -la
                     node --version
                     npm --version
