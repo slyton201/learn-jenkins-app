@@ -6,12 +6,13 @@ pipeline {
             agent {
                 docker {
                     image 'node:22.16.0-alpine3.22'
-                    args '--dns=8.8.8.8'
                     reuseNode true
                 }
             }
             steps {
                 sh '''
+                    ping -c 4 registry.npmjs.org || true
+                    curl -I https://registry.npmjs.org || true
                     ls -la
                     node --version
                     npm --version
